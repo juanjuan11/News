@@ -16,6 +16,6 @@ public class ArticleFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_article, container, false);
+        return inflater.inflate(R.layout.fragment_article, container, false);//加载布局
     }
 }

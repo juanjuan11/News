@@ -22,15 +22,15 @@ public class PictureFragment extends Fragment {
     private RecyclerView recyclerView;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       view=inflater.inflate(R.layout.fragment_picture, container, false);
+        view=inflater.inflate(R.layout.fragment_picture, container, false);
         initRecyclerView();
         return view;
     }
 
     private void initRecyclerView() {
         recyclerView=view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        recyclerView.setAdapter(new MyRecyclerViewAdapter());
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));//设置2列
+        recyclerView.setAdapter(new MyRecyclerViewAdapter());//设置适配器
     }
 
 }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 
@@ -45,11 +46,13 @@ public class MainActivity extends FragmentActivity {
         Fragment articleFragment =new ArticleFragment();
         Fragment pictureFragment=new PictureFragment();
         Fragment personalFragment=new PersonalFragment();
-        fragments.add(articleFragment);
+        fragments.add(articleFragment);//将fragment添加到list集合中
         fragments.add(pictureFragment);
         fragments.add(personalFragment);
         tabLayout=findViewById(R.id.tabLayout);
-        viewPager.setAdapter(new MyFragmentAdapter(getSupportFragmentManager(),fragments));
-        tabLayout.setupWithViewPager(viewPager);
+        FragmentManager fragmentManager=getSupportFragmentManager();//获取FragmentManager
+        MyFragmentAdapter myFragmentAdapter=new MyFragmentAdapter(fragmentManager,fragments);
+        viewPager.setAdapter(myFragmentAdapter);
+        tabLayout.setupWithViewPager(viewPager);//把TabLayout和ViewPager组合,使用setupWithViewPager可以让TabLayout和ViewPager联动
     }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private EditText etPassword;
     private Button btnLogin;
     private Button btnRegister;
+    private CheckBox rememberPassword;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,21 +43,23 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 String phone=etPhone.getText().toString();
                 String password=etPassword.getText().toString();
                 String spPassword=readPassword(phone);//获取密码
+
+
                 if (TextUtils.isEmpty(phone)){
                     Toast.makeText(LoginActivity.this,"请输入手机号",Toast.LENGTH_SHORT).show();
                 }else if (TextUtils.isEmpty(password)){
                     Toast.makeText(LoginActivity.this,"请输入密码",Toast.LENGTH_SHORT).show();
-                }else if (password.equals(spPassword)){
+                }else if (password.equals(spPassword)){//输入密码等于从SharedPreference中拿到的密码 登录成功
                     Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-                    startActivity(intent);
+                    startActivity(intent);//跳转至主页面
                 }
-                else if (password!=null&&!TextUtils.isEmpty(password)&&!password.equals(spPassword)){
+                else if (password!=null&&!TextUtils.isEmpty(password)&&!password.equals(spPassword)){//密码为空 或密码不等于注册时的密码
                     Toast.makeText(LoginActivity.this,"您输入的手机号或密码不正确",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(LoginActivity.this,"此手机号不存在",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"此手机号不存在",Toast.LENGTH_SHORT).show();//手机号不存在
                 }
                 break;
             case R.id.btn_register:

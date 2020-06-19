@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.LongDef;
 import androidx.annotation.Nullable;
 
 public class RegisterActivity extends Activity{
@@ -72,14 +74,15 @@ public class RegisterActivity extends Activity{
     }
 
     /**
-     * 判断SharedPreferences是否存在手机号
+     * 判断SharedPreferences是否存在手机号 从SharedPreferences中读取数据
      * @param phone
      * @return
      */
     private boolean isExistPhone(String phone){
         boolean isExistPhone=false;
-        SharedPreferences sp=getSharedPreferences("loginInfo",MODE_PRIVATE);
+        SharedPreferences sp=getSharedPreferences("loginInfo",MODE_PRIVATE);//得到sharedPreferences对象
         String spPassword=sp.getString(phone,"");//根据传入的手机号获取密码
+        Log.d("密码", spPassword);
         if (!TextUtils.isEmpty(spPassword)){//密码不为空 说明已保存过这个手机号
             isExistPhone=true;
         }
@@ -97,5 +100,6 @@ public class RegisterActivity extends Activity{
         SharedPreferences.Editor editor=sp.edit();
         editor.putString(phone,password);//把手机号密码保存进去
         editor.commit();//提交修改
+//        editor.apply();
     }
 }
